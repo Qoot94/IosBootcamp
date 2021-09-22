@@ -1,0 +1,47 @@
+//Swift Fundamentals III
+//Alkulaib _Qoot_Swift Fundamentals III
+
+import Foundation
+
+//Write a program that adds the numbers 1-255 to an array
+var array =  [Int]()
+var spareArray =  [Int]()
+for i in 1...255 {
+    var group = i
+    array.append(i)
+    spareArray.append(i)
+}
+print("The array in its finest glory from  1-255: \t \n \(array)")
+
+// Swap two random values in the array
+let num1 = Int.random(in: 1...255)
+let num2 = Int.random(in: 1...255)
+print("/n our two randomly swapped nummers are: \(num1) and \(num2)")
+
+for var k in 0..<array.count {
+    if  array[k] == array[num1]  { 
+        array.swapAt( num1-1 ,num2-1 )
+    } 
+    
+}
+print("The array after swapping two numbers randomly: \n \t \(array)\n") 
+
+//  Now write the code that swaps random values 100 times (You've created a "Shuffle"!)
+
+for var j in 1...99{
+    let num3 = Int.random(in: 1..<array.count-1)
+    let num4 = Int.random(in: 1..<array.count-1)
+    array.swapAt( array[num3]-1, array[num4]-1 )
+    j+=1
+}
+print("\n The 100x shuffled array: \n \t \(array) \n")
+
+//  Remove the value "42" from the array and Print "We found the answer to the Ultimate Question of Life, the Universe, and Everything at index __" and print the index of where "42" was before you removed it.
+for var a in 1..<array.count-1{
+    if array[a] == 42{
+        print("42 wan in array index \(a) and now its removed")
+        array.remove(at:a)
+    }
+}
+
+print(array)
