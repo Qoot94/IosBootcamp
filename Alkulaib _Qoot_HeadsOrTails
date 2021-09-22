@@ -1,0 +1,60 @@
+
+//HeadsOrTails
+//Alkulaib _Qoot_HeadsOrTails
+
+
+// Create a function tossCoin() ->  String
+var coinFlip = ["Heads","Tails "]
+var Tossed :[String] = []
+var headtoss=0
+
+func tossCoin( ) -> String {
+    // Have this function print "Tossing a Coin!"
+    var msg = "Tossing a Coin!"
+    
+    //Next have the function randomly pick either "Heads" or "Tails"
+    let flipped = coinFlip.randomElement()!
+    
+    if flipped == coinFlip[0]{
+        //Have the function print the result
+        var heads = coinFlip[0]
+        print("\(msg)\nyou landed on \(flipped)!")
+        Tossed.append(heads)
+        headtoss+=1 
+    }
+    else if flipped == coinFlip[1]{
+        var tails = coinFlip[1]
+        //Have the function print the result
+        print("\(msg)\nyou landed on \(flipped)!")
+        Tossed.append(tails)
+        
+    }
+    
+    // Finally, have the function return the result//
+    return msg
+    
+}
+
+//print(tossCoin(flipped))
+tossCoin()
+
+//  Now create another function tossMultipleCoins(Int) -> Double
+func tossMultipleCoins(number:Int) -> Double{
+    var msg = 0.0
+    
+    //  Have this function call the tossCoin function multiple times based on the Integer input
+    for i in 1...number{
+        tossCoin()
+    }
+    
+    //  Have the function return a Double that reflects the ratio of head toss to total toss
+    var totalToss = number
+    var ratio = Double(headtoss%totalToss)
+    print(ratio)
+    
+    return ratio
+    }
+
+
+tossMultipleCoins(number:10)
+
