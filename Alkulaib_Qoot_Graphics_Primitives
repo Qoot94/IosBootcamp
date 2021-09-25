@@ -1,0 +1,68 @@
+
+//Graphics Primitives
+//Alkulaib_Qoot_Graphics_Primitives
+
+import Foundation
+
+//Create a Point struct that has two properties called "X" & "Y" both of which are Doubles
+struct Point{
+    var x : Double = 0.0
+    var y : Double = 0.0
+    
+    init(x x:Double , y y: Double ){
+        self.x=x
+        self.y=y
+        
+    }
+}
+//Create a Line struct that has a "Start" and "End" property both of type Point
+struct Line{
+    var Start: Point 
+    var End: Point 
+    
+    init (s Start:Point, e End:Point){
+        self.Start = Start
+        self.End = End
+    }
+    //In the Line struct add a function to return the Length of the created line as a Double. 
+    func Length () -> Double
+    {
+        //set variables for coordinates of Start point(x1,y1) and End point(x2,y2)
+        let x1:Double = Start.x
+        let y1:Double = Start.y
+        let x2:Double = End.x
+        let y2:Double = End.y
+        //calculate distance (line length) between Start point(x1,y1) and End point(x2,y2)
+        let distanceBetweentTwoPoints:Double =  round(sqrt(pow((x2 - x1),2) + pow((y2-y1),2)))
+        
+        return distanceBetweentTwoPoints
+    }
+}
+
+//Create a Triangle Struct that contains a property called "Points" which is an array of type Point /
+//Optional) Notice this optional can be quite hard! Add a function to the Triangle to get the area of 
+//the triangle built with three provided points and return the value as a Double.
+
+struct Triangle  {
+    var Points:[Point]
+    
+    func triArea() -> Double {
+        var area=0.0
+        for point in Points{
+            var line1=Line(s:Points[0],e:Points[1]).Length()
+            var line2=Line(s:Points[0],e:Points[2]).Length()
+            area = (line1*line2)/2
+            print("The area of triangle is \(area) cm")
+            break
+        }
+        return area
+    }
+}
+/**/
+//test output
+//  let point1 = Point(x:6,y:3)//نقطة الف
+//  let point2 = Point(x:6,y:7)//نقطة ج
+//  
+//  let t=Triangle(Points: [point1,point2,Point(x:8,y:3)]).triArea()
+
+//end of code
