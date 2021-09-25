@@ -1,0 +1,113 @@
+//  Animals
+//  Alkulaib_Qoot_Animals
+
+
+//Objective: The objective of this assignment is to help you understand inheritance and how 
+//classes can be used to help organize your code. Apple gives us access to the iOS framework to 
+//build mobile applications, and the different APIs in the framework are built on heavy OOP 
+//principles that involve inheritance. Therefore, it is extremely important to understand inheritance 
+//so that you can navigate the iOS landscape more easily. 
+/******/
+//  To Do
+//  First, create a class called Animal
+class Animal {
+    //  Give Animal a property "name"
+    var name:String
+    //  Give Animal a property "health" with a default value of 100
+    var _health = 100
+    var health:Int {
+        set{
+            _health=newValue
+        }
+        get{
+            return _health
+        }
+    }
+    //  Give Animal an initialization that takes in a name and sets the name property appropriately
+    init(name name:String){
+        self.name=name
+    }
+    //  Give the animal a displayHealth method
+    func displayHealth() {
+        print(_health)
+    }
+}
+
+//  Next, create a subclass of Animal called Cat
+class Cat:Animal{
+    //  Give the Cat a method "growl" that prints to the screen "Rawr!"
+    func growl(){
+        var growl=print("Rawr!")
+        return growl
+    }
+    //  Modify the Cat's health to be 150
+    override var health:Int {
+        set{
+            _health=newValue
+        }
+        get{
+            return _health+50
+        }
+    }
+    //  Give the Cat a method "run" that prints to the screen "Running" and deducts 10 health
+    func run(number num:Int) {
+        print("Running")
+        _health-=10
+    }
+}
+
+//  Next, create two subclasses of Cat - Cheetah and Lion
+class Cheetah : Cat{
+    //  Override the Cheetah's run method to print "Running Fast" and deduct 50 health 
+    override func run(number num:Int) {
+        for var i in 1...num{
+            if _health>=1{
+                print("Running Fast")
+                _health-=50
+                i+=1
+            }else{
+                print("Cheetah \(self.name) is dead")
+                break
+            }
+            
+        }
+    }
+
+//  Add a sleep function to the Cheetah class that adds 50 health, make sure its health doesn't go over 200.
+func sleep(){
+            if health<=200{
+                _health+=50
+            }else if health>200{
+                _health=health
+            }
+}
+}
+class Lion : Cat{
+    //  Override the growl method of the Lion to make it print "ROAR!!!! I am the King of the Jungle"
+    override func growl() {
+        print("ROAR!!!! I am the King of the Jungle")
+    }
+    //  Override Lion's health to be 200
+    override var health: Int {
+        
+        set{
+            _health
+        }
+        get{
+            return _health+100
+        }
+    }
+}
+
+//  Create a Cheetah. Have the Cheetah run 4 times. Display the Cheetah's health. Now modify the Cheetah's run method so that it cannot run if it does not have the required health.
+let cheetah1 = Cheetah(name:"Galleria")
+cheetah1.run(number:4)
+cheetah1.displayHealth()
+
+//  Create a Lion. Have the Lion run 3 times. Have the Lion growl.
+let lion1 = Lion(name: "Mufasa")
+lion1.run(number:3)
+lion1.growl()
+
+
+
