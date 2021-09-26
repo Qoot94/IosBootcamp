@@ -1,0 +1,132 @@
+//eckOfCards
+//Alkulaib_Qoot_deckOfCards
+
+
+
+/****************/
+//  To Do
+//  Create a struct called "Card"
+//  Give the Card struct a property "Color" which will hold the color values associated with the card (Red, Blue, or Green). This value should be a String or an Enum
+//  Give the Card a property "Roll" which will hold a random value that represents the side of the die that will trigger that card.
+struct Card{
+    var Roll:Int
+    var color:String 
+    init (color color:String , _ Roll:Int){
+        self.Roll=Roll
+        switch (Roll) { //*smt is wrong logically*/
+        //  Red cards should have a roll value of either 3 or 4
+        case 3 ,4:
+            self.color="red"
+        //  Blue cards should have a roll value of either 1 or 2
+        case 2 ,1:
+            self.color="blue"
+        //  Green cards should have a roll value of 4, 5 or 6
+        case 6, 5, 4:
+            self.color="green"
+            
+        default:
+            self.color=""
+        }
+    }
+    }
+
+/****************/
+//  Next, create a class called "Deck"
+class Deck {
+    //  Give the Deck class a property called "cards" of type [Card]
+    var cards:[Card]
+    var redcards : [Card] = []
+    var bluecards : [Card] = []
+    var greencards : [Card] = []
+    var deckofcards = [Card]()
+    
+    //  When initializing the deck make sure that it has 10 cards of each color for a total of 30
+    init(_ cards:[Card]){
+        self.cards = cards
+        for var i in 1...30{
+            for card in cards{
+                if card.color == "red" && redcards.count<10{
+                    redcards.append(contentsOf: cards)
+                    deckofcards.append(contentsOf: redcards)
+                }
+                else if (card.color == "blue" && bluecards.count<10) {
+                    bluecards.append(contentsOf: cards)
+                    deckofcards.append(contentsOf: bluecards)
+                }
+                else if (card.color == "green" && greencards.count<10) {
+                    greencards.append(contentsOf: cards)
+                    deckofcards.append(contentsOf: greencards)
+                }
+                i+=1
+            }
+        }
+        }
+    
+    //  Give the Deck a deal method that selects the "top-most" card, removes it, and returns it
+        func deal() -> <#Return Type#>{
+            var repeated:[Card] = []
+            var topMost:[Card] = []
+            for (var n,card) in deckofcards.enumerated(){
+                if deckofcards[n].Roll == card.Roll && deckofcards[n].color == card.color{
+                    repeated.append(deckofcards[n])
+                    topMost.append(contentsOf: repeated)
+                    deckofcards.remove(at: n)
+                }
+                n+=1
+            }
+            return topMost 
+        }
+    
+        
+    //      Give the Deck a shuffle method that randomly reorders the deck's cards
+    func shuffled() {
+        deckofcards
+    }
+    
+    //      Give the Deck a isEmpty method that returns true or false in regards to if the deck has ran out of cards.
+    
+    func empty() -> Bool{
+        if deckofcards.isEmpty { return true; }
+        else {return false}
+    }
+}
+
+/****************/
+//  Finally, create a class called "Player"
+class Player {
+    var name : String
+    var hand : [Card] = []
+    init(_ name:String){
+        self.name=name
+    }
+    
+    //  Give the Player a draw method of type (Deck) -> Card which draws a card from a deck, adds it to the players hand, and returns it
+    var s=Card(color: "", _:1)
+    func draw(_:Deck) -> [Card] {
+        hand.append(s)
+        return hand
+    }
+    //  Note how we are passing the Deck by reference here since it is a class. 
+    //  Give the Player a rollDice method that returns a random number between 1 and 6
+    func rollDice() {
+        for var i in 1...6{ 
+            var r = Int.random(in: 1...6)
+            s.Roll=r
+        }
+    }
+    
+    //  Give the Player a matchingCards method of (String, Int) -> Int that will count all the card the player has which match the given color string and roll integer.
+    func matchingCards(color: String, number: Int) -> Int {
+        var matched:[Card]=[]
+        for var i in 0..<hand.count{
+            if hand[i].color==color && hand[i].Roll==number{
+                matched.append(hand[i])
+            }
+            i+=1
+        }
+        return (matched.count)
+    }
+    
+}
+
+
