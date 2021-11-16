@@ -1,0 +1,24 @@
+import Foundation
+
+func greet(_ something: String) -> String {
+  let greeting = "Hello, " + something + "!"
+  return greeting
+}
+var str = "racecar"
+var str2 = "busstop"
+
+let revers = String(str.reversed())
+let revers2 =  String(str2.reversed())
+
+if str == revers || str2 == revers2 {
+  print(str+" is a palindrome")
+ 
+}else {
+   print(str+" is not a palindrome")
+}
+if str2 == revers2 {
+  print(str2+" is a palindrome")
+ 
+}else {
+   print(str2+" is not a palindrome")
+}
